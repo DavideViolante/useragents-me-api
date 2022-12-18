@@ -1,0 +1,39 @@
+{
+  "name": "useragents-me-api",
+  "version": "1.0.0",
+  "description": "Node.js wrapper for useragents.me",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "lint": "eslint ./",
+    "test": "nyc mocha",
+    "coverage": "nyc --reporter=lcov --reporter=text mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavideViolante/useragents-me-api.git"
+  },
+  "keywords": [
+    "user",
+    "agent",
+    "user agent",
+    "user agents",
+    "users agent",
+    "ua"
+  ],
+  "author": "DavideViolante",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DavideViolante/useragents-me-api/issues"
+  },
+  "homepage": "https://github.com/DavideViolante/useragents-me-api#readme",
+  "dependencies": {
+    "axios": "^1.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-google": "^0.14.0",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0"
+  }
+}
