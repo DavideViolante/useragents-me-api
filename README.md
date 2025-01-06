@@ -3,7 +3,7 @@
 
 [![NPM](https://nodei.co/npm/useragents-me-api.png)](https://nodei.co/npm/useragents-me-api/)
 
-Simple Node.js wrapper for [useragents.me](https://useragents.me) APIs.
+Simple Node.js wrapper for [useragents.me](https://useragents.me).
 
 ### Install
 `npm i useragents-me-api`
