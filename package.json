@@ -1,6 +1,6 @@
 {
   "name": "useragents-me-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node.js wrapper for useragents.me",
   "main": "index.js",
   "scripts": {
