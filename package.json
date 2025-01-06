@@ -7,7 +7,8 @@
     "dev": "node index.js",
     "lint": "eslint ./",
     "test": "nyc mocha",
-    "coverage": "nyc --reporter=lcov --reporter=text mocha"
+    "coverage": "nyc --reporter=lcov --reporter=text mocha",
+    "prepare": "husky || true"
   },
   "repository": {
     "type": "git",
@@ -31,8 +32,9 @@
     "axios": "^1.7.9"
   },
   "devDependencies": {
-    "eslint": "^9.17.0",
+    "eslint": "~8.57.1",
     "eslint-config-google": "^0.14.0",
+    "husky": "^9.1.7",
     "mocha": "^11.0.1",
     "nyc": "^17.1.0"
   }
