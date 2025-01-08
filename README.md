@@ -29,5 +29,5 @@ async function main() {
 ```npm run lint```
 
 ### Author
-- [useragents.me](https://useragents.me)
+- [Nicholas Beaton](https://github.com/stayml/)
 - [Davide Violante](https://github.com/DavideViolante/)
