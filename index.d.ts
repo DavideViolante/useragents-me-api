@@ -5,7 +5,8 @@ declare module 'useragents-me-api' {
   }
   /**
    * Get User Agents from useragents.me website as JSON
+   * @param {string} [uaType=mobile] - Specify type of agents: mobile, desktop
    * @return {Promise<UserAgent[]>}
    */
-  export function useragentsme(): Promise<UserAgent[]>;
+  export function useragentsme(uaType?: string): Promise<UserAgent[]>;
 }

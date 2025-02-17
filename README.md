@@ -14,8 +14,12 @@ const { useragentsme } = require('useragents-me-api');
 
 async function main() {
   try {
-    const res = await useragentsme();
-    console.log(res); // [{"ua": "Mozilla/5.0...", "pct": 36.123...}, ...]
+    // Get most common mobile user agents
+    const res1 = await useragentsme();
+    console.log(res1); // [{"ua": "Mozilla/5.0...", "pct": 44.123...}, ...]
+    // Get most common desktop user agents
+    const res2 = await useragentsme('desktop');
+    console.log(res2); // [{"ua": "Mozilla/5.0...", "pct": 40.123...}, ...]
   } catch (error) {
     console.log(error);
   }
