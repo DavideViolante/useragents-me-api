@@ -7,6 +7,7 @@ const selectorIds = {
   mobile: '#most-common-mobile-useragents-json-csv',
   desktop: '#most-common-desktop-useragents-json-csv',
 };
+const validTypes = ['mobile', 'desktop'];
 
 /**
  * Scrape User Agents from useragents.me website textarea
@@ -15,8 +16,9 @@ const selectorIds = {
  */
 async function getJsonFromPage(uaType = 'mobile') {
   // Protect against UA types we do not have selectors for
-  if (!['mobile', 'desktop'].includes(uaType)) {
-    throw new Error(`Unsupported user-agent type specified: ${uaType}`);
+  if (!validTypes.includes(uaType)) {
+    throw new Error(`Invalid user-agent type: ${uaType}.
+      Valid types are: ${validTypes.join(', ')}`);
   }
 
   const selector = `${selectorIds[uaType]} > div:nth-child(1) > textarea`;
