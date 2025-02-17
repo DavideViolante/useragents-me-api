@@ -6,7 +6,7 @@ const website = 'https://www.useragents.me/';
 const selectorIds = {
   mobile: '#most-common-mobile-useragents-json-csv',
   desktop: '#most-common-desktop-useragents-json-csv',
-}
+};
 
 /**
  * Scrape User Agents from useragents.me website textarea
@@ -20,7 +20,6 @@ async function getJsonFromPage(uaType = 'mobile') {
   }
 
   const selector = `${selectorIds[uaType]} > div:nth-child(1) > textarea`;
-  console.error('selector', selector);
 
   try {
     const { data } = await axios.get(website);
