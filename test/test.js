@@ -10,8 +10,8 @@ describe('Tests for Useragents.me', () => {
     assert.ok(typeof res[0].ua === 'string');
     assert.ok(typeof res[0].pct === 'number');
     assert.ok(res[0].pct > 0);
-    assert.ok(res[0].ua.includes('Chrome'));
-    assert.ok(res[0].ua.includes('Mobile'));
+    assert.ok(res[0].ua.includes('Android'));
+    assert.ok(!res[0].ua.includes('Macintosh'));
   });
 
   it('should return an array of objects with desktop user agents', async () => {
@@ -22,14 +22,14 @@ describe('Tests for Useragents.me', () => {
     assert.ok(typeof res[0].ua === 'string');
     assert.ok(typeof res[0].pct === 'number');
     assert.ok(res[0].pct > 0);
-    assert.ok(res[0].ua.includes('Chrome'));
+    assert.ok(res[0].ua.includes('Macintosh'));
     assert.ok(!res[0].ua.includes('Mobile'));
   });
 
-  it('should throw an error if user agent type is invalid', async () => {
+  it('should throw an error if user agent platform is invalid', async () => {
     try {
       await useragentsme('invalid');
-      assert.fail('Invalid user-agent type');
+      assert.fail('Invalid user-agent platform');
     } catch (error) {
       assert.ok(error instanceof Error);
     }

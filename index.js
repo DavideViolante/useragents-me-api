@@ -7,21 +7,21 @@ const selectorIds = {
   mobile: '#most-common-mobile-useragents-json-csv',
   desktop: '#most-common-desktop-useragents-json-csv',
 };
-const validTypes = ['mobile', 'desktop'];
+const validPlatforms = ['mobile', 'desktop'];
 
 /**
  * Scrape User Agents from useragents.me website textarea
- * @param {string} [uaType=mobile] - Specify type of agents: mobile, desktop
+ * @param {string} [platform=mobile] Specify the platform: "mobile", "desktop"
  * @return {Promise<Array>} Array of objects
  */
-async function getJsonFromPage(uaType = 'mobile') {
-  // Protect against UA types we do not have selectors for
-  if (!validTypes.includes(uaType)) {
-    throw new Error(`Invalid user-agent type: ${uaType}.
-      Valid types are: ${validTypes.join(', ')}`);
+async function getJsonFromPage(platform = 'mobile') {
+  // Protect against platforms that does not exist
+  if (!validPlatforms.includes(platform)) {
+    throw new Error(`Invalid user-agent platform: ${platform}.
+      Valid platforms are: ${validPlatforms.join(', ')}`);
   }
 
-  const selector = `${selectorIds[uaType]} > div:nth-child(1) > textarea`;
+  const selector = `${selectorIds[platform]} > div:nth-child(1) > textarea`;
 
   try {
     const { data } = await axios.get(website);
@@ -35,13 +35,13 @@ async function getJsonFromPage(uaType = 'mobile') {
 
 /**
  * Get User Agents from useragents.me website as JSON
- * @param {string} [uaType=mobile] - Specify type of agents: mobile, desktop
+ * @param {string} [platform=mobile] Specify the platform: "mobile", "desktop"
  * @return {Promise<Array>} Array of objects such as:
  * [{ ua: string, pct: number }, ...]
  */
-async function useragentsme(uaType = 'mobile') {
+async function useragentsme(platform = 'mobile') {
   try {
-    const userAgents = await getJsonFromPage(uaType);
+    const userAgents = await getJsonFromPage(platform);
     return userAgents;
   } catch (error) {
     console.error(error);

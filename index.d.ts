@@ -3,10 +3,11 @@ declare module 'useragents-me-api' {
     ua: string; // User Agent
     pct: number; // Percentage
   }
+  type Platform = 'mobile' | 'desktop';
   /**
    * Get User Agents from useragents.me website as JSON
-   * @param {string} [uaType=mobile] - Specify type of agents: mobile, desktop
+   * @param {Platform} [platform=mobile] Specify the platform: "mobile", "desktop". Default "mobile"
    * @return {Promise<UserAgent[]>}
    */
-  export function useragentsme(uaType?: string): Promise<UserAgent[]>;
+  export function useragentsme(platform?: Platform): Promise<UserAgent[]>;
 }
