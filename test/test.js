@@ -1,37 +1,60 @@
 const assert = require('assert');
+const axios = require('axios');
 const { useragentsme } = require('../index');
 
+const apiResponse = {
+  response: {
+    common: {
+      mobile: {
+        data: [{ useragent: 'Mozilla/5.0 (Android)', frequency: 28.91 }],
+      },
+      desktop: {
+        data: [{ useragent: 'Mozilla/5.0 (Macintosh)', frequency: 9.06 }],
+      },
+      tablet: {
+        data: [{ useragent: 'Mozilla/5.0 (iPad)', frequency: 5.12 }],
+      },
+    },
+  },
+};
+
 describe('Tests for Useragents.me', () => {
-  it('should return an array of objects with mobile user agents', async () => {
+  let originalGet;
+
+  beforeEach(() => {
+    originalGet = axios.get;
+    axios.get = async (url) => {
+      assert.strictEqual(url, 'https://www.useragents.me/api');
+      return { data: apiResponse };
+    };
+  });
+
+  afterEach(() => {
+    axios.get = originalGet;
+  });
+
+  it('should map common mobile user agents', async () => {
     const res = await useragentsme();
-    assert.ok(res.length > 0);
-    assert.ok(Object.hasOwn(res[0], 'ua'));
-    assert.ok(Object.hasOwn(res[0], 'pct'));
-    assert.ok(typeof res[0].ua === 'string');
-    assert.ok(typeof res[0].pct === 'number');
-    assert.ok(res[0].pct > 0);
-    assert.ok(res[0].ua.includes('Android'));
-    assert.ok(!res[0].ua.includes('Macintosh'));
+    assert.deepStrictEqual(res, [
+      { ua: 'Mozilla/5.0 (Android)', pct: 28.91 },
+    ]);
   });
 
-  it('should return an array of objects with desktop user agents', async () => {
+  it('should return common desktop user agents', async () => {
     const res = await useragentsme('desktop');
-    assert.ok(res.length > 0);
-    assert.ok(Object.hasOwn(res[0], 'ua'));
-    assert.ok(Object.hasOwn(res[0], 'pct'));
-    assert.ok(typeof res[0].ua === 'string');
-    assert.ok(typeof res[0].pct === 'number');
-    assert.ok(res[0].pct > 0);
-    assert.ok(res[0].ua.includes('Macintosh'));
-    assert.ok(!res[0].ua.includes('Mobile'));
+    assert.deepStrictEqual(res, [
+      { ua: 'Mozilla/5.0 (Macintosh)', pct: 9.06 },
+    ]);
   });
 
-  it('should throw an error if user agent platform is invalid', async () => {
-    try {
-      await useragentsme('invalid');
-      assert.fail('Invalid user-agent platform');
-    } catch (error) {
-      assert.ok(error instanceof Error);
-    }
+  it('should return common tablet user agents', async () => {
+    const res = await useragentsme('tablet');
+    assert.deepStrictEqual(res, [
+      { ua: 'Mozilla/5.0 (iPad)', pct: 5.12 },
+    ]);
+  });
+
+  it('should reject an invalid platform', async () => {
+    await assert.rejects(useragentsme('invalid'), /Invalid user-agent/);
   });
 });
