@@ -1,7 +1,7 @@
 # Useragents.me Node.js APIs wrapper
 [![](https://github.com/davideviolante/useragents-me-api/workflows/Node.js%20CI/badge.svg)](https://github.com/DavideViolante/useragents-me-api/actions?query=workflow%3A"Node.js+CI") [![Coverage Status](https://coveralls.io/repos/github/DavideViolante/useragents-me-api/badge.svg?branch=master)](https://coveralls.io/github/DavideViolante/useragents-me-api?branch=master) [![Maintainability](https://api.codeclimate.com/v1/badges/ded2c349739e4d87130b/maintainability)](https://codeclimate.com/github/DavideViolante/useragents-me-api/maintainability) ![npm](https://img.shields.io/npm/dm/useragents-me-api) [![Donate](https://img.shields.io/badge/paypal-donate-179BD7.svg)](https://www.paypal.me/dviolante)
 
-[![NPM](https://nodei.co/npm/useragents-me-api.png)](https://nodei.co/npm/useragents-me-api/)
+[![NPM](https://nodei.co/npm/useragents-me-api.png)](https://www.npmjs.com/package/useragents-me-api)
 
 Simple Node.js wrapper for [useragents.me](https://useragents.me).
 
@@ -17,7 +17,7 @@ async function main() {
     // Get most common mobile user agents
     const mobileUserAgents = await useragentsme(); // Default arg is 'mobile'
     console.log(mobileUserAgents); // [{"ua": "Mozilla/5.0...", "pct": 44.123...}, ...]
-    // Get most common desktop user agents
+    // Get most common desktop user agents. Valid options: "desktop", "mobile", "tablet"
     const desktopUserAgents = await useragentsme('desktop');
     console.log(desktopUserAgents); // [{"ua": "Mozilla/5.0...", "pct": 40.123...}, ...]
   } catch (error) {
