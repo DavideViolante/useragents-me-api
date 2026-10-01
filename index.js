@@ -6,10 +6,10 @@ const validPlatforms = ['mobile', 'desktop', 'tablet'];
 
 /**
  * Get common User Agents from the useragents.me API
- * @param {string} [platform=mobile] Platform: "mobile", "desktop", "tablet"
+ * @param {string} platform Platform: "mobile", "desktop", "tablet"
  * @return {Promise<Array>} Array of objects
  */
-async function getUserAgents(platform = 'mobile') {
+async function getUserAgents(platform) {
   // Protect against platforms that does not exist
   if (!validPlatforms.includes(platform)) {
     throw new Error(`Invalid user-agent platform: ${platform}.
